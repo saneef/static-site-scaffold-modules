@@ -20,6 +20,9 @@ module.exports = function(eleventyConfig) {
       source: 'src', // Folder images are stored in
       output: 'public', // Folder images should be output to
     },
+    // Filter HTML files to apply the transform based on their outputh path.
+    // Eg. /_site\/blog\/*/, will only transfrom <img> for blog files
+    outputPathRegex: /.*/, 
     images: {
       resize: {
         min: 250, // Minimum width to resize an image to

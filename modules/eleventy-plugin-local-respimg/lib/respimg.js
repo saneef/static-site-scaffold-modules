@@ -49,6 +49,7 @@ const baseConfig = {
     },
     hoistClasses: false,
   },
+  outputPathRegex: /.*/
 };
 
 /**
@@ -93,7 +94,9 @@ function respimgSetup(userConfig = {}) {
 
     await Promise.all(toOptimize.map(f => optimizeAdditional(f, config)));
 
-    if (outputPath && outputPath.endsWith('.html')) {
+    if (outputPath &&
+        outputPath.match(config.outputPathRegex) &&
+        outputPath.endsWith('.html')) {
       const $ = cheerio.load(content);
 
       const images = $('img')
